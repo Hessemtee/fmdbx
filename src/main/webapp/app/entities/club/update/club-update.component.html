@@ -1,0 +1,267 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-club-heading" data-cy="ClubCreateUpdateHeading" jhiTranslate="fmdbxApp.club.home.createOrEditLabel">
+        Create or edit a Club
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+          <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.logo" for="field_logo">Logo</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('logoContentType')!.value + ';base64,' + editForm.get('logo')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('logo')!.value"
+              alt="club image"
+            />
+            <div *ngIf="editForm.get('logo')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start">{{ editForm.get('logoContentType')!.value }}, {{ byteSize(editForm.get('logo')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('logo', 'logoContentType', 'file_logo')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_logo"
+              data-cy="logo"
+              (change)="setFileData($event, 'logo', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="logo" id="field_logo" data-cy="logo" formControlName="logo" />
+          <input type="hidden" class="form-control" name="logoContentType" id="field_logoContentType" formControlName="logoContentType" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.ville" for="field_ville">Ville</label>
+          <input type="text" class="form-control" name="ville" id="field_ville" data-cy="ville" formControlName="ville" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.balance" for="field_balance">Balance</label>
+          <input type="number" class="form-control" name="balance" id="field_balance" data-cy="balance" formControlName="balance" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.masseSalariale" for="field_masseSalariale">Masse Salariale</label>
+          <input
+            type="number"
+            class="form-control"
+            name="masseSalariale"
+            id="field_masseSalariale"
+            data-cy="masseSalariale"
+            formControlName="masseSalariale"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.budgetSalaires" for="field_budgetSalaires">Budget Salaires</label>
+          <input
+            type="number"
+            class="form-control"
+            name="budgetSalaires"
+            id="field_budgetSalaires"
+            data-cy="budgetSalaires"
+            formControlName="budgetSalaires"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.budgetTransferts" for="field_budgetTransferts">Budget Transferts</label>
+          <input
+            type="number"
+            class="form-control"
+            name="budgetTransferts"
+            id="field_budgetTransferts"
+            data-cy="budgetTransferts"
+            formControlName="budgetTransferts"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.infrastructuresEntrainement" for="field_infrastructuresEntrainement"
+            >Infrastructures Entrainement</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="infrastructuresEntrainement"
+            id="field_infrastructuresEntrainement"
+            data-cy="infrastructuresEntrainement"
+            formControlName="infrastructuresEntrainement"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.infrastructuresJeunes" for="field_infrastructuresJeunes"
+            >Infrastructures Jeunes</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="infrastructuresJeunes"
+            id="field_infrastructuresJeunes"
+            data-cy="infrastructuresJeunes"
+            formControlName="infrastructuresJeunes"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.recrutementJeunes" for="field_recrutementJeunes">Recrutement Jeunes</label>
+          <input
+            type="text"
+            class="form-control"
+            name="recrutementJeunes"
+            id="field_recrutementJeunes"
+            data-cy="recrutementJeunes"
+            formControlName="recrutementJeunes"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.nomStade" for="field_nomStade">Nom Stade</label>
+          <input type="text" class="form-control" name="nomStade" id="field_nomStade" data-cy="nomStade" formControlName="nomStade" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.capaciteStade" for="field_capaciteStade">Capacite Stade</label>
+          <input
+            type="number"
+            class="form-control"
+            name="capaciteStade"
+            id="field_capaciteStade"
+            data-cy="capaciteStade"
+            formControlName="capaciteStade"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.previsionMedia" for="field_previsionMedia">Prevision Media</label>
+          <input
+            type="number"
+            class="form-control"
+            name="previsionMedia"
+            id="field_previsionMedia"
+            data-cy="previsionMedia"
+            formControlName="previsionMedia"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.indiceContinental" for="field_indiceContinental">Indice Continental</label>
+          <input
+            type="number"
+            class="form-control"
+            name="indiceContinental"
+            id="field_indiceContinental"
+            data-cy="indiceContinental"
+            formControlName="indiceContinental"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.competitionContinentale" for="field_competitionContinentale"
+            >Competition Continentale</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="competitionContinentale"
+            id="field_competitionContinentale"
+            data-cy="competitionContinentale"
+            formControlName="competitionContinentale"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.club.championnat" for="field_championnat">Championnat</label>
+          <select class="form-control" id="field_championnat" data-cy="championnat" name="championnat" formControlName="championnat">
+            <option *ngIf="!editForm.get('championnat')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                championnatOption.id === editForm.get('championnat')!.value?.id ? editForm.get('championnat')!.value : championnatOption
+              "
+              *ngFor="let championnatOption of championnatsSharedCollection; trackBy: trackChampionnatById"
+            >
+              {{ championnatOption.nom }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['championnat'])!.invalid && (editForm.get(['championnat'])!.dirty || editForm.get(['championnat'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['championnat'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="fmdbxApp.club.jeux" for="field_jeuxes">Jeux</label>
+          <select class="form-control" id="field_jeuxes" data-cy="jeux" multiple name="jeuxes" formControlName="jeuxes">
+            <option
+              [ngValue]="getSelectedJeu(jeuOption, editForm.get('jeuxes')!.value)"
+              *ngFor="let jeuOption of jeusSharedCollection; trackBy: trackJeuById"
+            >
+              {{ jeuOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="fmdbxApp.club.bookmarks" for="field_bookmarks">Bookmarks</label>
+          <select class="form-control" id="field_bookmarks" data-cy="bookmarks" multiple name="bookmarks" formControlName="bookmarks">
+            <option
+              [ngValue]="getSelectedAbonne(abonneOption, editForm.get('bookmarks')!.value)"
+              *ngFor="let abonneOption of abonnesSharedCollection; trackBy: trackAbonneById"
+            >
+              {{ abonneOption.nom }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

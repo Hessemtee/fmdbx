@@ -1,0 +1,106 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-message-heading" data-cy="MessageCreateUpdateHeading" jhiTranslate="fmdbxApp.message.home.createOrEditLabel">
+        Create or edit a Message
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.message.contenu" for="field_contenu">Contenu</label>
+          <input type="text" class="form-control" name="contenu" id="field_contenu" data-cy="contenu" formControlName="contenu" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.message.date" for="field_date">Date</label>
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.message.conversation" for="field_conversation">Conversation</label>
+          <select class="form-control" id="field_conversation" data-cy="conversation" name="conversation" formControlName="conversation">
+            <option *ngIf="!editForm.get('conversation')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                conversationOption.id === editForm.get('conversation')!.value?.id ? editForm.get('conversation')!.value : conversationOption
+              "
+              *ngFor="let conversationOption of conversationsSharedCollection; trackBy: trackConversationById"
+            >
+              {{ conversationOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['conversation'])!.invalid && (editForm.get(['conversation'])!.dirty || editForm.get(['conversation'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['conversation'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.message.redacteur" for="field_redacteur">Redacteur</label>
+          <select class="form-control" id="field_redacteur" data-cy="redacteur" name="redacteur" formControlName="redacteur">
+            <option *ngIf="!editForm.get('redacteur')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="abonneOption.id === editForm.get('redacteur')!.value?.id ? editForm.get('redacteur')!.value : abonneOption"
+              *ngFor="let abonneOption of abonnesSharedCollection; trackBy: trackAbonneById"
+            >
+              {{ abonneOption.nom }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['redacteur'])!.invalid && (editForm.get(['redacteur'])!.dirty || editForm.get(['redacteur'])!.touched)">
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['redacteur'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+{
+  "fmdbxApp": {
+    "abonne": {
+      "home": {
+        "title": "Abonnes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Abonne",
+        "createOrEditLabel": "Créer ou éditer un Abonne",
+        "notFound": "Aucun Abonne trouvé"
+      },
+      "created": "Un nouveau Abonne a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Abonne avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Abonne avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Abonne {{ id }} ?"
+      },
+      "detail": {
+        "title": "Abonne"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "avatar": "Avatar",
+      "premium": "Premium",
+      "user": "User",
+      "commentaire": "Commentaire",
+      "conversationEnvoie": "Conversation Envoie",
+      "conversationRecu": "Conversation Recu",
+      "message": "Message",
+      "bookmarks": "Bookmarks",
+      "favoris": "Favoris"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "fmdbxApp": {
+    "version": {
+      "home": {
+        "title": "Versions",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Version erstellen",
+        "createOrEditLabel": "Version erstellen oder bearbeiten",
+        "notFound": "Keine Versions gefunden"
+      },
+      "created": "Version erstellt mit ID {{ param }}",
+      "updated": "Version aktualisiert mit ID {{ param }}",
+      "deleted": "Version gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Version {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Version"
+      },
+      "id": "ID",
+      "version": "Version",
+      "jeu": "Jeu"
+    }
+  }
+}

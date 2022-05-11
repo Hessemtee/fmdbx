@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="abonne">
+      <h2 data-cy="abonneDetailsHeading"><span jhiTranslate="fmdbxApp.abonne.detail.title">Abonne</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ abonne.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.abonne.nom">Nom</span></dt>
+        <dd>
+          <span>{{ abonne.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.abonne.avatar">Avatar</span></dt>
+        <dd>
+          <div *ngIf="abonne.avatar">
+            <a (click)="openFile(abonne.avatar, abonne.avatarContentType)">
+              <img [src]="'data:' + abonne.avatarContentType + ';base64,' + abonne.avatar" style="max-width: 100%" alt="abonne image" />
+            </a>
+            {{ abonne.avatarContentType }}, {{ byteSize(abonne.avatar) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.abonne.premium">Premium</span></dt>
+        <dd>
+          <span>{{ abonne.premium }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.abonne.user">User</span></dt>
+        <dd>
+          <span>{{ abonne.user?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/abonne', abonne.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Commentaire.
+    -->
+    <changeSet id="20220510134511-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="joueur_concerne_id"
+                                 baseTableName="commentaire"
+                                 constraintName="fk_commentaire__joueur_concerne_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="joueur"/>
+
+        <addForeignKeyConstraint baseColumnNames="club_concerne_id"
+                                 baseTableName="commentaire"
+                                 constraintName="fk_commentaire__club_concerne_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="club"/>
+
+        <addForeignKeyConstraint baseColumnNames="abonne_id"
+                                 baseTableName="commentaire"
+                                 constraintName="fk_commentaire__abonne_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="abonne"/>
+    </changeSet>
+</databaseChangeLog>

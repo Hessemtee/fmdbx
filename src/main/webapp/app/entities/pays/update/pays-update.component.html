@@ -1,0 +1,153 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pays-heading" data-cy="PaysCreateUpdateHeading" jhiTranslate="fmdbxApp.pays.home.createOrEditLabel">
+        Create or edit a Pays
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.pays.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.pays.drapeau" for="field_drapeau">Drapeau</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('drapeauContentType')!.value + ';base64,' + editForm.get('drapeau')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('drapeau')!.value"
+              alt="pays image"
+            />
+            <div *ngIf="editForm.get('drapeau')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('drapeauContentType')!.value }}, {{ byteSize(editForm.get('drapeau')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('drapeau', 'drapeauContentType', 'file_drapeau')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_drapeau"
+              data-cy="drapeau"
+              (change)="setFileData($event, 'drapeau', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="drapeau" id="field_drapeau" data-cy="drapeau" formControlName="drapeau" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="drapeauContentType"
+            id="field_drapeauContentType"
+            formControlName="drapeauContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.pays.confederation" for="field_confederation">Confederation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="confederation"
+            id="field_confederation"
+            data-cy="confederation"
+            formControlName="confederation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.pays.indiceConf" for="field_indiceConf">Indice Conf</label>
+          <input
+            type="number"
+            class="form-control"
+            name="indiceConf"
+            id="field_indiceConf"
+            data-cy="indiceConf"
+            formControlName="indiceConf"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.pays.rankingFifa" for="field_rankingFifa">Ranking Fifa</label>
+          <input
+            type="number"
+            class="form-control"
+            name="rankingFifa"
+            id="field_rankingFifa"
+            data-cy="rankingFifa"
+            formControlName="rankingFifa"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.pays.anneesAvantNationalite" for="field_anneesAvantNationalite"
+            >Annees Avant Nationalite</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="anneesAvantNationalite"
+            id="field_anneesAvantNationalite"
+            data-cy="anneesAvantNationalite"
+            formControlName="anneesAvantNationalite"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.pays.importanceEnJeu" for="field_importanceEnJeu">Importance En Jeu</label>
+          <input
+            type="number"
+            class="form-control"
+            name="importanceEnJeu"
+            id="field_importanceEnJeu"
+            data-cy="importanceEnJeu"
+            formControlName="importanceEnJeu"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="fmdbxApp.pays.joueurs" for="field_joueurs">Joueurs</label>
+          <select class="form-control" id="field_joueurs" data-cy="joueurs" multiple name="joueurs" formControlName="joueurs">
+            <option
+              [ngValue]="getSelectedJoueur(joueurOption, editForm.get('joueurs')!.value)"
+              *ngFor="let joueurOption of joueursSharedCollection; trackBy: trackJoueurById"
+            >
+              {{ joueurOption.nom }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

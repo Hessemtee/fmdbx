@@ -1,0 +1,80 @@
+{
+  "applications": "*",
+  "changelogDate": "20220510134510",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "joueur",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "position",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "nombreSelections",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nombreButsInternationaux",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "valeur",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "salaire",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "coutEstime",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Joueur",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "club",
+      "otherEntityRelationshipName": "joueur",
+      "relationshipName": "club",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "abonne",
+      "otherEntityRelationshipName": "favoris",
+      "ownerSide": true,
+      "relationshipName": "favoris",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "pays",
+      "otherEntityRelationshipName": "joueurs",
+      "ownerSide": false,
+      "relationshipName": "pays",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

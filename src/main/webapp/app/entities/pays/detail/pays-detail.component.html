@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pays">
+      <h2 data-cy="paysDetailsHeading"><span jhiTranslate="fmdbxApp.pays.detail.title">Pays</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ pays.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.pays.nom">Nom</span></dt>
+        <dd>
+          <span>{{ pays.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.pays.drapeau">Drapeau</span></dt>
+        <dd>
+          <div *ngIf="pays.drapeau">
+            <a (click)="openFile(pays.drapeau, pays.drapeauContentType)">
+              <img [src]="'data:' + pays.drapeauContentType + ';base64,' + pays.drapeau" style="max-width: 100%" alt="pays image" />
+            </a>
+            {{ pays.drapeauContentType }}, {{ byteSize(pays.drapeau) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.pays.confederation">Confederation</span></dt>
+        <dd>
+          <span>{{ pays.confederation }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.pays.indiceConf">Indice Conf</span></dt>
+        <dd>
+          <span>{{ pays.indiceConf }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.pays.rankingFifa">Ranking Fifa</span></dt>
+        <dd>
+          <span>{{ pays.rankingFifa }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.pays.anneesAvantNationalite">Annees Avant Nationalite</span></dt>
+        <dd>
+          <span>{{ pays.anneesAvantNationalite }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.pays.importanceEnJeu">Importance En Jeu</span></dt>
+        <dd>
+          <span>{{ pays.importanceEnJeu }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.pays.joueurs">Joueurs</span></dt>
+        <dd>
+          <span *ngFor="let joueurs of pays.joueurs; let last = last">
+            <a [routerLink]="['/joueur', joueurs?.id, 'view']">{{ joueurs.nom }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pays', pays.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

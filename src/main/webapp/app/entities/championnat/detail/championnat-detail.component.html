@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="championnat">
+      <h2 data-cy="championnatDetailsHeading"><span jhiTranslate="fmdbxApp.championnat.detail.title">Championnat</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ championnat.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.championnat.nom">Nom</span></dt>
+        <dd>
+          <span>{{ championnat.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.championnat.nombreDEquipes">Nombre D Equipes</span></dt>
+        <dd>
+          <span>{{ championnat.nombreDEquipes }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.championnat.logo">Logo</span></dt>
+        <dd>
+          <div *ngIf="championnat.logo">
+            <a (click)="openFile(championnat.logo, championnat.logoContentType)">
+              <img
+                [src]="'data:' + championnat.logoContentType + ';base64,' + championnat.logo"
+                style="max-width: 100%"
+                alt="championnat image"
+              />
+            </a>
+            {{ championnat.logoContentType }}, {{ byteSize(championnat.logo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.championnat.niveau">Niveau</span></dt>
+        <dd>
+          <span>{{ championnat.niveau }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.championnat.reputation">Reputation</span></dt>
+        <dd>
+          <span>{{ championnat.reputation }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.championnat.pays">Pays</span></dt>
+        <dd>
+          <div *ngIf="championnat.pays">
+            <a [routerLink]="['/pays', championnat.pays?.id, 'view']">{{ championnat.pays?.nom }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/championnat', championnat.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

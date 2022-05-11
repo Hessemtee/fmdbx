@@ -1,0 +1,136 @@
+entity Abonne {
+	nom String
+	avatar ImageBlob
+    premium Boolean
+}
+
+entity Jeu {
+	nom String required
+}
+
+entity Version {
+	version String required
+}
+
+entity Club {
+	nom String required
+	logo ImageBlob
+	ville String
+	balance Integer
+	masseSalariale Integer
+	budgetSalaires Integer
+	budgetTransferts Integer
+	infrastructuresEntrainement String
+	infrastructuresJeunes String
+	recrutementJeunes String
+	nomStade String
+	capaciteStade Integer
+	previsionMedia Integer
+	indiceContinental Integer
+	competitionContinentale Boolean
+}
+
+entity Championnat {
+	nom String
+	nombreDEquipes Integer
+	logo ImageBlob
+	niveau Integer
+	reputation Integer
+}
+
+entity Pays {
+	nom String
+	drapeau ImageBlob
+	confederation String
+	indiceConf Integer
+	rankingFifa Integer
+	anneesAvantNationalite Integer
+	importanceEnJeu Integer
+}
+
+entity Joueur {
+	nom String
+	prenom String
+	photo String
+	position String
+	dateNaissance LocalDate
+	nombreSelections Integer
+	nombreButsInternationaux Integer
+	valeur Integer
+	salaire Integer
+	coutEstime Integer
+}
+
+entity Commentaire {
+	contenu String
+	visible Boolean
+}
+
+entity Message {
+	contenu String
+    date LocalDate
+}
+
+entity Conversation {
+	objet String
+}
+
+// Un abonne est un user
+relationship OneToOne {
+	Abonne{user required} to User
+}
+
+relationship OneToMany {
+    /*a*/
+    Jeu{versions(version) required} to Version
+  
+    /*heberge*/
+    Pays to Championnat {pays(nom) required}
+
+    /*poste*/
+    Abonne to Commentaire{abonne(nom) required}
+    
+    /*envoie*/
+    Abonne{conversationEnvoie(nom)} to Conversation{emetteur}
+
+	/*recoit*/
+    Abonne{conversationRecu(nom)} to Conversation{recepteur}
+
+	/*cite*/
+    Conversation to Message{conversation required}
+
+	/*ecrit*/
+    Abonne to Message{redacteur(nom) required}
+
+}
+
+relationship ManyToOne {
+	/*evolue*/
+    Club {championnat(nom) required} to Championnat 
+    
+    /*appartient*/
+    Joueur{club(nom)} to Club
+    
+    /*concerne*/
+    Commentaire{joueurConcerne(nom)} to Joueur
+
+	/*commente*/
+    Commentaire{clubConcerne(nom)} to Club
+    
+}
+
+relationship ManyToMany {
+  /*contient*/
+  Club{jeux(nom)} to Jeu{clubs(nom)}
+  
+  /*selectionne*/
+  Pays{joueurs(nom)} to Joueur{pays(nom)}
+  
+  /*bookmark*/
+  Club{bookmarks(nom)} to Abonne{bookmarks(nom)}
+
+  /*favori*/
+  Joueur{favoris(nom)} to Abonne{favoris(nom)}
+
+}
+    

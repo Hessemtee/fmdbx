@@ -1,0 +1,69 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-conversation-heading"
+        data-cy="ConversationCreateUpdateHeading"
+        jhiTranslate="fmdbxApp.conversation.home.createOrEditLabel"
+      >
+        Create or edit a Conversation
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.conversation.objet" for="field_objet">Objet</label>
+          <input type="text" class="form-control" name="objet" id="field_objet" data-cy="objet" formControlName="objet" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.conversation.emetteur" for="field_emetteur">Emetteur</label>
+          <select class="form-control" id="field_emetteur" data-cy="emetteur" name="emetteur" formControlName="emetteur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="abonneOption.id === editForm.get('emetteur')!.value?.id ? editForm.get('emetteur')!.value : abonneOption"
+              *ngFor="let abonneOption of abonnesSharedCollection; trackBy: trackAbonneById"
+            >
+              {{ abonneOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.conversation.recepteur" for="field_recepteur">Recepteur</label>
+          <select class="form-control" id="field_recepteur" data-cy="recepteur" name="recepteur" formControlName="recepteur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="abonneOption.id === editForm.get('recepteur')!.value?.id ? editForm.get('recepteur')!.value : abonneOption"
+              *ngFor="let abonneOption of abonnesSharedCollection; trackBy: trackAbonneById"
+            >
+              {{ abonneOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

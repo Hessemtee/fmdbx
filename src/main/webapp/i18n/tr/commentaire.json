@@ -1,0 +1,28 @@
+{
+  "fmdbxApp": {
+    "commentaire": {
+      "home": {
+        "title": "Commentaires",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Commentaire",
+        "createOrEditLabel": "Create or edit a Commentaire",
+        "notFound": "No Commentaires found"
+      },
+      "created": "A new Commentaire is created with identifier {{ param }}",
+      "updated": "A Commentaire is updated with identifier {{ param }}",
+      "deleted": "A Commentaire is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Commentaire {{ id }}?"
+      },
+      "detail": {
+        "title": "Commentaire"
+      },
+      "id": "ID",
+      "contenu": "Contenu",
+      "visible": "Visible",
+      "joueurConcerne": "Joueur Concerne",
+      "clubConcerne": "Club Concerne",
+      "abonne": "Abonne"
+    }
+  }
+}

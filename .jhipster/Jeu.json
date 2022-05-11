@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20220510134505",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "jeu",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Jeu",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "version",
+      "otherEntityName": "version",
+      "otherEntityRelationshipName": "jeu",
+      "relationshipName": "versions",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "club",
+      "otherEntityRelationshipName": "jeux",
+      "ownerSide": false,
+      "relationshipName": "clubs",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,80 @@
+{
+  "applications": "*",
+  "changelogDate": "20220510134504",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "abonne",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "avatar",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "premium",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Abonne",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "abonne",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "commentaire",
+      "otherEntityRelationshipName": "abonne",
+      "relationshipName": "commentaire",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "conversation",
+      "otherEntityRelationshipName": "emetteur",
+      "relationshipName": "conversationEnvoie",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "conversation",
+      "otherEntityRelationshipName": "recepteur",
+      "relationshipName": "conversationRecu",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "message",
+      "otherEntityRelationshipName": "redacteur",
+      "relationshipName": "message",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "club",
+      "otherEntityRelationshipName": "bookmarks",
+      "ownerSide": false,
+      "relationshipName": "bookmarks",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "joueur",
+      "otherEntityRelationshipName": "favoris",
+      "ownerSide": false,
+      "relationshipName": "favoris",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

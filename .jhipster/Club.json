@@ -1,0 +1,103 @@
+{
+  "applications": "*",
+  "changelogDate": "20220510134507",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "club",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "logo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "ville",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "balance",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "masseSalariale",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "budgetSalaires",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "budgetTransferts",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "infrastructuresEntrainement",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "infrastructuresJeunes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "recrutementJeunes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomStade",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "capaciteStade",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "previsionMedia",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "indiceContinental",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "competitionContinentale",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Club",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "championnat",
+      "otherEntityRelationshipName": "club",
+      "relationshipName": "championnat",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "jeu",
+      "otherEntityRelationshipName": "clubs",
+      "ownerSide": true,
+      "relationshipName": "jeux",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "abonne",
+      "otherEntityRelationshipName": "bookmarks",
+      "ownerSide": true,
+      "relationshipName": "bookmarks",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

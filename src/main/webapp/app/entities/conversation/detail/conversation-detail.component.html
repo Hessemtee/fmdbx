@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="conversation">
+      <h2 data-cy="conversationDetailsHeading"><span jhiTranslate="fmdbxApp.conversation.detail.title">Conversation</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ conversation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.conversation.objet">Objet</span></dt>
+        <dd>
+          <span>{{ conversation.objet }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.conversation.emetteur">Emetteur</span></dt>
+        <dd>
+          <div *ngIf="conversation.emetteur">
+            <a [routerLink]="['/abonne', conversation.emetteur?.id, 'view']">{{ conversation.emetteur?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.conversation.recepteur">Recepteur</span></dt>
+        <dd>
+          <div *ngIf="conversation.recepteur">
+            <a [routerLink]="['/abonne', conversation.recepteur?.id, 'view']">{{ conversation.recepteur?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/conversation', conversation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

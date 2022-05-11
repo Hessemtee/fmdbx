@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-commentaire-heading" data-cy="CommentaireCreateUpdateHeading" jhiTranslate="fmdbxApp.commentaire.home.createOrEditLabel">
+        Create or edit a Commentaire
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.commentaire.contenu" for="field_contenu">Contenu</label>
+          <input type="text" class="form-control" name="contenu" id="field_contenu" data-cy="contenu" formControlName="contenu" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.commentaire.visible" for="field_visible">Visible</label>
+          <input type="checkbox" class="form-check" name="visible" id="field_visible" data-cy="visible" formControlName="visible" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.commentaire.joueurConcerne" for="field_joueurConcerne">Joueur Concerne</label>
+          <select
+            class="form-control"
+            id="field_joueurConcerne"
+            data-cy="joueurConcerne"
+            name="joueurConcerne"
+            formControlName="joueurConcerne"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                joueurOption.id === editForm.get('joueurConcerne')!.value?.id ? editForm.get('joueurConcerne')!.value : joueurOption
+              "
+              *ngFor="let joueurOption of joueursSharedCollection; trackBy: trackJoueurById"
+            >
+              {{ joueurOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.commentaire.clubConcerne" for="field_clubConcerne">Club Concerne</label>
+          <select class="form-control" id="field_clubConcerne" data-cy="clubConcerne" name="clubConcerne" formControlName="clubConcerne">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="clubOption.id === editForm.get('clubConcerne')!.value?.id ? editForm.get('clubConcerne')!.value : clubOption"
+              *ngFor="let clubOption of clubsSharedCollection; trackBy: trackClubById"
+            >
+              {{ clubOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.commentaire.abonne" for="field_abonne">Abonne</label>
+          <select class="form-control" id="field_abonne" data-cy="abonne" name="abonne" formControlName="abonne">
+            <option *ngIf="!editForm.get('abonne')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="abonneOption.id === editForm.get('abonne')!.value?.id ? editForm.get('abonne')!.value : abonneOption"
+              *ngFor="let abonneOption of abonnesSharedCollection; trackBy: trackAbonneById"
+            >
+              {{ abonneOption.nom }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['abonne'])!.invalid && (editForm.get(['abonne'])!.dirty || editForm.get(['abonne'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['abonne'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

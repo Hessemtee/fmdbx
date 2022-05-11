@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Pays.
+    -->
+    <changeSet id="20220510134509-1" author="jhipster">
+        <createTable tableName="pays">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nom" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="drapeau" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="drapeau_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="confederation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="indice_conf" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="ranking_fifa" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="annees_avant_nationalite" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="importance_en_jeu" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20220510134509-1-relations" author="jhipster">
+
+        <createTable tableName="rel_pays__joueurs">
+            <column name="joueurs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pays_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="pays_id, joueurs_id" tableName="rel_pays__joueurs"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20220510134509-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/pays.csv"
+                  separator=";"
+                  tableName="pays"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="nom" type="string"/>
+            <column name="drapeau" type="blob"/>
+            <column name="drapeau_content_type" type="string"/>
+            <column name="confederation" type="string"/>
+            <column name="indice_conf" type="numeric"/>
+            <column name="ranking_fifa" type="numeric"/>
+            <column name="annees_avant_nationalite" type="numeric"/>
+            <column name="importance_en_jeu" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

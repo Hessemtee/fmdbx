@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="version">
+      <h2 data-cy="versionDetailsHeading"><span jhiTranslate="fmdbxApp.version.detail.title">Version</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ version.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.version.version">Version</span></dt>
+        <dd>
+          <span>{{ version.version }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.version.jeu">Jeu</span></dt>
+        <dd>
+          <div *ngIf="version.jeu">
+            <a [routerLink]="['/jeu', version.jeu?.id, 'view']">{{ version.jeu?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/version', version.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

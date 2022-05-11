@@ -1,0 +1,28 @@
+{
+  "fmdbxApp": {
+    "commentaire": {
+      "home": {
+        "title": "Commentaires",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Commentaire erstellen",
+        "createOrEditLabel": "Commentaire erstellen oder bearbeiten",
+        "notFound": "Keine Commentaires gefunden"
+      },
+      "created": "Commentaire erstellt mit ID {{ param }}",
+      "updated": "Commentaire aktualisiert mit ID {{ param }}",
+      "deleted": "Commentaire gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Commentaire {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Commentaire"
+      },
+      "id": "ID",
+      "contenu": "Contenu",
+      "visible": "Visible",
+      "joueurConcerne": "Joueur Concerne",
+      "clubConcerne": "Club Concerne",
+      "abonne": "Abonne"
+    }
+  }
+}

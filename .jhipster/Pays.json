@@ -1,0 +1,60 @@
+{
+  "applications": "*",
+  "changelogDate": "20220510134509",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "pays",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "drapeau",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "confederation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "indiceConf",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rankingFifa",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "anneesAvantNationalite",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "importanceEnJeu",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Pays",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "championnat",
+      "otherEntityRelationshipName": "pays",
+      "relationshipName": "championnat",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "joueur",
+      "otherEntityRelationshipName": "pays",
+      "ownerSide": true,
+      "relationshipName": "joueurs",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

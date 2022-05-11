@@ -1,0 +1,121 @@
+<div>
+  <h2 id="page-heading" data-cy="ClubHeading">
+    <span jhiTranslate="fmdbxApp.club.home.title">Clubs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="fmdbxApp.club.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-club"
+        [routerLink]="['/club/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="fmdbxApp.club.home.createLabel"> Create a new Club </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="clubs?.length === 0">
+    <span jhiTranslate="fmdbxApp.club.home.notFound">No clubs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="clubs && clubs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.nom">Nom</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.logo">Logo</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.ville">Ville</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.balance">Balance</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.masseSalariale">Masse Salariale</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.budgetSalaires">Budget Salaires</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.budgetTransferts">Budget Transferts</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.infrastructuresEntrainement">Infrastructures Entrainement</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.infrastructuresJeunes">Infrastructures Jeunes</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.recrutementJeunes">Recrutement Jeunes</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.nomStade">Nom Stade</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.capaciteStade">Capacite Stade</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.previsionMedia">Prevision Media</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.indiceContinental">Indice Continental</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.competitionContinentale">Competition Continentale</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.championnat">Championnat</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.jeux">Jeux</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.club.bookmarks">Bookmarks</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let club of clubs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/club', club.id, 'view']">{{ club.id }}</a>
+          </td>
+          <td>{{ club.nom }}</td>
+          <td>
+            <a *ngIf="club.logo" (click)="openFile(club.logo, club.logoContentType)">
+              <img [src]="'data:' + club.logoContentType + ';base64,' + club.logo" style="max-height: 30px" alt="club image" />
+            </a>
+            <span *ngIf="club.logo">{{ club.logoContentType }}, {{ byteSize(club.logo) }}</span>
+          </td>
+          <td>{{ club.ville }}</td>
+          <td>{{ club.balance }}</td>
+          <td>{{ club.masseSalariale }}</td>
+          <td>{{ club.budgetSalaires }}</td>
+          <td>{{ club.budgetTransferts }}</td>
+          <td>{{ club.infrastructuresEntrainement }}</td>
+          <td>{{ club.infrastructuresJeunes }}</td>
+          <td>{{ club.recrutementJeunes }}</td>
+          <td>{{ club.nomStade }}</td>
+          <td>{{ club.capaciteStade }}</td>
+          <td>{{ club.previsionMedia }}</td>
+          <td>{{ club.indiceContinental }}</td>
+          <td>{{ club.competitionContinentale }}</td>
+          <td>
+            <div *ngIf="club.championnat">
+              <a [routerLink]="['/championnat', club.championnat?.id, 'view']">{{ club.championnat?.nom }}</a>
+            </div>
+          </td>
+          <td>
+            <span *ngFor="let jeux of club.jeuxes; let last = last">
+              <a class="form-control-static" [routerLink]="['/jeu', jeux.id, 'view']">{{ jeux.nom }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td>
+            <span *ngFor="let bookmarks of club.bookmarks; let last = last">
+              <a class="form-control-static" [routerLink]="['/abonne', bookmarks.id, 'view']">{{ bookmarks.nom }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/club', club.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/club', club.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(club)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

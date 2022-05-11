@@ -1,0 +1,90 @@
+<div>
+  <h2 id="page-heading" data-cy="ConversationHeading">
+    <span jhiTranslate="fmdbxApp.conversation.home.title">Conversations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="fmdbxApp.conversation.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-conversation"
+        [routerLink]="['/conversation/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="fmdbxApp.conversation.home.createLabel"> Create a new Conversation </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="conversations?.length === 0">
+    <span jhiTranslate="fmdbxApp.conversation.home.notFound">No conversations found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="conversations && conversations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.conversation.objet">Objet</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.conversation.emetteur">Emetteur</span></th>
+          <th scope="col"><span jhiTranslate="fmdbxApp.conversation.recepteur">Recepteur</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let conversation of conversations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/conversation', conversation.id, 'view']">{{ conversation.id }}</a>
+          </td>
+          <td>{{ conversation.objet }}</td>
+          <td>
+            <div *ngIf="conversation.emetteur">
+              <a [routerLink]="['/abonne', conversation.emetteur?.id, 'view']">{{ conversation.emetteur?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="conversation.recepteur">
+              <a [routerLink]="['/abonne', conversation.recepteur?.id, 'view']">{{ conversation.recepteur?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/conversation', conversation.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/conversation', conversation.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(conversation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

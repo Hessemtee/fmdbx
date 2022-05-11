@@ -1,0 +1,41 @@
+{
+  "fmdbxApp": {
+    "club": {
+      "home": {
+        "title": "Clubs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Club",
+        "createOrEditLabel": "Créer ou éditer un Club",
+        "notFound": "Aucun Club trouvé"
+      },
+      "created": "Un nouveau Club a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Club avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Club avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Club {{ id }} ?"
+      },
+      "detail": {
+        "title": "Club"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "logo": "Logo",
+      "ville": "Ville",
+      "balance": "Balance",
+      "masseSalariale": "Masse Salariale",
+      "budgetSalaires": "Budget Salaires",
+      "budgetTransferts": "Budget Transferts",
+      "infrastructuresEntrainement": "Infrastructures Entrainement",
+      "infrastructuresJeunes": "Infrastructures Jeunes",
+      "recrutementJeunes": "Recrutement Jeunes",
+      "nomStade": "Nom Stade",
+      "capaciteStade": "Capacite Stade",
+      "previsionMedia": "Prevision Media",
+      "indiceContinental": "Indice Continental",
+      "competitionContinentale": "Competition Continentale",
+      "championnat": "Championnat",
+      "jeux": "Jeux",
+      "bookmarks": "Bookmarks"
+    }
+  }
+}

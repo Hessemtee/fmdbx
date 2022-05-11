@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Pays.
+    -->
+    <changeSet id="20220510134509-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="pays_id"
+                                 baseTableName="rel_pays__joueurs"
+                                 constraintName="fk_rel_pays__joueurs__pays_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pays"/>
+
+        <addForeignKeyConstraint baseColumnNames="joueurs_id"
+                                 baseTableName="rel_pays__joueurs"
+                                 constraintName="fk_rel_pays__joueurs__joueurs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="joueur"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,26 @@
+{
+  "fmdbxApp": {
+    "jeu": {
+      "home": {
+        "title": "Jeus",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Jeu erstellen",
+        "createOrEditLabel": "Jeu erstellen oder bearbeiten",
+        "notFound": "Keine Jeus gefunden"
+      },
+      "created": "Jeu erstellt mit ID {{ param }}",
+      "updated": "Jeu aktualisiert mit ID {{ param }}",
+      "deleted": "Jeu gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Jeu {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Jeu"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "versions": "Versions",
+      "clubs": "Clubs"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="commentaire">
+      <h2 data-cy="commentaireDetailsHeading"><span jhiTranslate="fmdbxApp.commentaire.detail.title">Commentaire</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ commentaire.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.commentaire.contenu">Contenu</span></dt>
+        <dd>
+          <span>{{ commentaire.contenu }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.commentaire.visible">Visible</span></dt>
+        <dd>
+          <span>{{ commentaire.visible }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.commentaire.joueurConcerne">Joueur Concerne</span></dt>
+        <dd>
+          <div *ngIf="commentaire.joueurConcerne">
+            <a [routerLink]="['/joueur', commentaire.joueurConcerne?.id, 'view']">{{ commentaire.joueurConcerne?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.commentaire.clubConcerne">Club Concerne</span></dt>
+        <dd>
+          <div *ngIf="commentaire.clubConcerne">
+            <a [routerLink]="['/club', commentaire.clubConcerne?.id, 'view']">{{ commentaire.clubConcerne?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.commentaire.abonne">Abonne</span></dt>
+        <dd>
+          <div *ngIf="commentaire.abonne">
+            <a [routerLink]="['/abonne', commentaire.abonne?.id, 'view']">{{ commentaire.abonne?.nom }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/commentaire', commentaire.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "changelogDate": "20220510134508",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "championnat",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombreDEquipes",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "logo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "niveau",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "reputation",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Championnat",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "pays",
+      "otherEntityRelationshipName": "championnat",
+      "relationshipName": "pays",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no"
+}

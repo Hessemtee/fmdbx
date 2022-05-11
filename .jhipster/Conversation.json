@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20220510134513",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "conversation",
+  "fields": [
+    {
+      "fieldName": "objet",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Conversation",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "message",
+      "otherEntityRelationshipName": "conversation",
+      "relationshipName": "message",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "abonne",
+      "otherEntityRelationshipName": "conversationEnvoie",
+      "relationshipName": "emetteur",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "abonne",
+      "otherEntityRelationshipName": "conversationRecu",
+      "relationshipName": "recepteur",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

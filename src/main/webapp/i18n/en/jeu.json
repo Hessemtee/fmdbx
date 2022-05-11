@@ -1,0 +1,26 @@
+{
+  "fmdbxApp": {
+    "jeu": {
+      "home": {
+        "title": "Jeus",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Jeu",
+        "createOrEditLabel": "Create or edit a Jeu",
+        "notFound": "No Jeus found"
+      },
+      "created": "A new Jeu is created with identifier {{ param }}",
+      "updated": "A Jeu is updated with identifier {{ param }}",
+      "deleted": "A Jeu is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Jeu {{ id }}?"
+      },
+      "detail": {
+        "title": "Jeu"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "versions": "Versions",
+      "clubs": "Clubs"
+    }
+  }
+}

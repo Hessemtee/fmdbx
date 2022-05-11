@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Joueur.
+    -->
+    <changeSet id="20220510134510-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="club_id"
+                                 baseTableName="joueur"
+                                 constraintName="fk_joueur__club_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="club"/>
+
+        <addForeignKeyConstraint baseColumnNames="joueur_id"
+                                 baseTableName="rel_joueur__favoris"
+                                 constraintName="fk_rel_joueur__favoris__joueur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="joueur"/>
+
+        <addForeignKeyConstraint baseColumnNames="favoris_id"
+                                 baseTableName="rel_joueur__favoris"
+                                 constraintName="fk_rel_joueur__favoris__favoris_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="abonne"/>
+    </changeSet>
+</databaseChangeLog>

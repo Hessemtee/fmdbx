@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="joueur">
+      <h2 data-cy="joueurDetailsHeading"><span jhiTranslate="fmdbxApp.joueur.detail.title">Joueur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ joueur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.nom">Nom</span></dt>
+        <dd>
+          <span>{{ joueur.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ joueur.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.photo">Photo</span></dt>
+        <dd>
+          <span>{{ joueur.photo }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.position">Position</span></dt>
+        <dd>
+          <span>{{ joueur.position }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.dateNaissance">Date Naissance</span></dt>
+        <dd>
+          <span>{{ joueur.dateNaissance | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.nombreSelections">Nombre Selections</span></dt>
+        <dd>
+          <span>{{ joueur.nombreSelections }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.nombreButsInternationaux">Nombre Buts Internationaux</span></dt>
+        <dd>
+          <span>{{ joueur.nombreButsInternationaux }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.valeur">Valeur</span></dt>
+        <dd>
+          <span>{{ joueur.valeur }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.salaire">Salaire</span></dt>
+        <dd>
+          <span>{{ joueur.salaire }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.coutEstime">Cout Estime</span></dt>
+        <dd>
+          <span>{{ joueur.coutEstime }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.club">Club</span></dt>
+        <dd>
+          <div *ngIf="joueur.club">
+            <a [routerLink]="['/club', joueur.club?.id, 'view']">{{ joueur.club?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.joueur.favoris">Favoris</span></dt>
+        <dd>
+          <span *ngFor="let favoris of joueur.favorises; let last = last">
+            <a [routerLink]="['/abonne', favoris?.id, 'view']">{{ favoris.nom }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/joueur', joueur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

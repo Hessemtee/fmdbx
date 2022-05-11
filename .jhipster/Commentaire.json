@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20220510134511",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "commentaire",
+  "fields": [
+    {
+      "fieldName": "contenu",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "visible",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Commentaire",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "joueur",
+      "otherEntityRelationshipName": "commentaire",
+      "relationshipName": "joueurConcerne",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "club",
+      "otherEntityRelationshipName": "commentaire",
+      "relationshipName": "clubConcerne",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "abonne",
+      "otherEntityRelationshipName": "commentaire",
+      "relationshipName": "abonne",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no"
+}

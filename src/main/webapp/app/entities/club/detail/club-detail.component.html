@@ -1,0 +1,113 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="club">
+      <h2 data-cy="clubDetailsHeading"><span jhiTranslate="fmdbxApp.club.detail.title">Club</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ club.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.nom">Nom</span></dt>
+        <dd>
+          <span>{{ club.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.logo">Logo</span></dt>
+        <dd>
+          <div *ngIf="club.logo">
+            <a (click)="openFile(club.logo, club.logoContentType)">
+              <img [src]="'data:' + club.logoContentType + ';base64,' + club.logo" style="max-width: 100%" alt="club image" />
+            </a>
+            {{ club.logoContentType }}, {{ byteSize(club.logo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.ville">Ville</span></dt>
+        <dd>
+          <span>{{ club.ville }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.balance">Balance</span></dt>
+        <dd>
+          <span>{{ club.balance }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.masseSalariale">Masse Salariale</span></dt>
+        <dd>
+          <span>{{ club.masseSalariale }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.budgetSalaires">Budget Salaires</span></dt>
+        <dd>
+          <span>{{ club.budgetSalaires }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.budgetTransferts">Budget Transferts</span></dt>
+        <dd>
+          <span>{{ club.budgetTransferts }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.infrastructuresEntrainement">Infrastructures Entrainement</span></dt>
+        <dd>
+          <span>{{ club.infrastructuresEntrainement }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.infrastructuresJeunes">Infrastructures Jeunes</span></dt>
+        <dd>
+          <span>{{ club.infrastructuresJeunes }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.recrutementJeunes">Recrutement Jeunes</span></dt>
+        <dd>
+          <span>{{ club.recrutementJeunes }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.nomStade">Nom Stade</span></dt>
+        <dd>
+          <span>{{ club.nomStade }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.capaciteStade">Capacite Stade</span></dt>
+        <dd>
+          <span>{{ club.capaciteStade }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.previsionMedia">Prevision Media</span></dt>
+        <dd>
+          <span>{{ club.previsionMedia }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.indiceContinental">Indice Continental</span></dt>
+        <dd>
+          <span>{{ club.indiceContinental }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.competitionContinentale">Competition Continentale</span></dt>
+        <dd>
+          <span>{{ club.competitionContinentale }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.championnat">Championnat</span></dt>
+        <dd>
+          <div *ngIf="club.championnat">
+            <a [routerLink]="['/championnat', club.championnat?.id, 'view']">{{ club.championnat?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.jeux">Jeux</span></dt>
+        <dd>
+          <span *ngFor="let jeux of club.jeuxes; let last = last">
+            <a [routerLink]="['/jeu', jeux?.id, 'view']">{{ jeux.nom }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.club.bookmarks">Bookmarks</span></dt>
+        <dd>
+          <span *ngFor="let bookmarks of club.bookmarks; let last = last">
+            <a [routerLink]="['/abonne', bookmarks?.id, 'view']">{{ bookmarks.nom }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/club', club.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

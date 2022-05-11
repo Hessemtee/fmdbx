@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="message">
+      <h2 data-cy="messageDetailsHeading"><span jhiTranslate="fmdbxApp.message.detail.title">Message</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ message.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.message.contenu">Contenu</span></dt>
+        <dd>
+          <span>{{ message.contenu }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.message.date">Date</span></dt>
+        <dd>
+          <span>{{ message.date | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.message.conversation">Conversation</span></dt>
+        <dd>
+          <div *ngIf="message.conversation">
+            <a [routerLink]="['/conversation', message.conversation?.id, 'view']">{{ message.conversation?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="fmdbxApp.message.redacteur">Redacteur</span></dt>
+        <dd>
+          <div *ngIf="message.redacteur">
+            <a [routerLink]="['/abonne', message.redacteur?.id, 'view']">{{ message.redacteur?.nom }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/message', message.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "fmdbxApp": {
+    "pays": {
+      "home": {
+        "title": "Pays",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Pays erstellen",
+        "createOrEditLabel": "Pays erstellen oder bearbeiten",
+        "notFound": "Keine Pays gefunden"
+      },
+      "created": "Pays erstellt mit ID {{ param }}",
+      "updated": "Pays aktualisiert mit ID {{ param }}",
+      "deleted": "Pays gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Pays {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Pays"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "drapeau": "Drapeau",
+      "confederation": "Confederation",
+      "indiceConf": "Indice Conf",
+      "rankingFifa": "Ranking Fifa",
+      "anneesAvantNationalite": "Annees Avant Nationalite",
+      "importanceEnJeu": "Importance En Jeu",
+      "championnat": "Championnat",
+      "joueurs": "Joueurs"
+    }
+  }
+}

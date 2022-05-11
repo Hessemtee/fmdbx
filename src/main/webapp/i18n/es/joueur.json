@@ -1,0 +1,36 @@
+{
+  "fmdbxApp": {
+    "joueur": {
+      "home": {
+        "title": "Joueurs",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Joueur",
+        "createOrEditLabel": "Crear o editar Joueur",
+        "notFound": "Ningún Joueurs encontrado"
+      },
+      "created": "Un nuevo Joueur ha sido creado con el identificador {{ param }}",
+      "updated": "Un Joueur ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Joueur ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Joueur {{ id }}?"
+      },
+      "detail": {
+        "title": "Joueur"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "photo": "Photo",
+      "position": "Position",
+      "dateNaissance": "Date Naissance",
+      "nombreSelections": "Nombre Selections",
+      "nombreButsInternationaux": "Nombre Buts Internationaux",
+      "valeur": "Valeur",
+      "salaire": "Salaire",
+      "coutEstime": "Cout Estime",
+      "club": "Club",
+      "favoris": "Favoris",
+      "pays": "Pays"
+    }
+  }
+}

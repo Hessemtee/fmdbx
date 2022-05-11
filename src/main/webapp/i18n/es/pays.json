@@ -1,0 +1,32 @@
+{
+  "fmdbxApp": {
+    "pays": {
+      "home": {
+        "title": "Pays",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Pays",
+        "createOrEditLabel": "Crear o editar Pays",
+        "notFound": "Ningún Pays encontrado"
+      },
+      "created": "Un nuevo Pays ha sido creado con el identificador {{ param }}",
+      "updated": "Un Pays ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Pays ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Pays {{ id }}?"
+      },
+      "detail": {
+        "title": "Pays"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "drapeau": "Drapeau",
+      "confederation": "Confederation",
+      "indiceConf": "Indice Conf",
+      "rankingFifa": "Ranking Fifa",
+      "anneesAvantNationalite": "Annees Avant Nationalite",
+      "importanceEnJeu": "Importance En Jeu",
+      "championnat": "Championnat",
+      "joueurs": "Joueurs"
+    }
+  }
+}

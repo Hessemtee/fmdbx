@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Club.
+    -->
+    <changeSet id="20220510134507-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="championnat_id"
+                                 baseTableName="club"
+                                 constraintName="fk_club__championnat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="championnat"/>
+
+        <addForeignKeyConstraint baseColumnNames="club_id"
+                                 baseTableName="rel_club__jeux"
+                                 constraintName="fk_rel_club__jeux__club_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="club"/>
+
+        <addForeignKeyConstraint baseColumnNames="jeux_id"
+                                 baseTableName="rel_club__jeux"
+                                 constraintName="fk_rel_club__jeux__jeux_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jeu"/>
+
+        <addForeignKeyConstraint baseColumnNames="club_id"
+                                 baseTableName="rel_club__bookmarks"
+                                 constraintName="fk_rel_club__bookmarks__club_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="club"/>
+
+        <addForeignKeyConstraint baseColumnNames="bookmarks_id"
+                                 baseTableName="rel_club__bookmarks"
+                                 constraintName="fk_rel_club__bookmarks__bookmarks_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="abonne"/>
+    </changeSet>
+</databaseChangeLog>

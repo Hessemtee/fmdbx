@@ -1,0 +1,146 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-joueur-heading" data-cy="JoueurCreateUpdateHeading" jhiTranslate="fmdbxApp.joueur.home.createOrEditLabel">
+        Create or edit a Joueur
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.prenom" for="field_prenom">Prenom</label>
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.photo" for="field_photo">Photo</label>
+          <input type="text" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.position" for="field_position">Position</label>
+          <input type="text" class="form-control" name="position" id="field_position" data-cy="position" formControlName="position" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+          <div class="input-group">
+            <input
+              id="field_dateNaissance"
+              data-cy="dateNaissance"
+              type="text"
+              class="form-control"
+              name="dateNaissance"
+              ngbDatepicker
+              #dateNaissanceDp="ngbDatepicker"
+              formControlName="dateNaissance"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.nombreSelections" for="field_nombreSelections">Nombre Selections</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nombreSelections"
+            id="field_nombreSelections"
+            data-cy="nombreSelections"
+            formControlName="nombreSelections"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.nombreButsInternationaux" for="field_nombreButsInternationaux"
+            >Nombre Buts Internationaux</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="nombreButsInternationaux"
+            id="field_nombreButsInternationaux"
+            data-cy="nombreButsInternationaux"
+            formControlName="nombreButsInternationaux"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.valeur" for="field_valeur">Valeur</label>
+          <input type="number" class="form-control" name="valeur" id="field_valeur" data-cy="valeur" formControlName="valeur" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.salaire" for="field_salaire">Salaire</label>
+          <input type="number" class="form-control" name="salaire" id="field_salaire" data-cy="salaire" formControlName="salaire" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.coutEstime" for="field_coutEstime">Cout Estime</label>
+          <input
+            type="number"
+            class="form-control"
+            name="coutEstime"
+            id="field_coutEstime"
+            data-cy="coutEstime"
+            formControlName="coutEstime"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="fmdbxApp.joueur.club" for="field_club">Club</label>
+          <select class="form-control" id="field_club" data-cy="club" name="club" formControlName="club">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="clubOption.id === editForm.get('club')!.value?.id ? editForm.get('club')!.value : clubOption"
+              *ngFor="let clubOption of clubsSharedCollection; trackBy: trackClubById"
+            >
+              {{ clubOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="fmdbxApp.joueur.favoris" for="field_favorises">Favoris</label>
+          <select class="form-control" id="field_favorises" data-cy="favoris" multiple name="favorises" formControlName="favorises">
+            <option
+              [ngValue]="getSelectedAbonne(abonneOption, editForm.get('favorises')!.value)"
+              *ngFor="let abonneOption of abonnesSharedCollection; trackBy: trackAbonneById"
+            >
+              {{ abonneOption.nom }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "fmdbxApp": {
+    "championnat": {
+      "home": {
+        "title": "Championnats",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Championnat",
+        "createOrEditLabel": "Crear o editar Championnat",
+        "notFound": "Ningún Championnats encontrado"
+      },
+      "created": "Un nuevo Championnat ha sido creado con el identificador {{ param }}",
+      "updated": "Un Championnat ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Championnat ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Championnat {{ id }}?"
+      },
+      "detail": {
+        "title": "Championnat"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "nombreDEquipes": "Nombre D Equipes",
+      "logo": "Logo",
+      "niveau": "Niveau",
+      "reputation": "Reputation",
+      "pays": "Pays"
+    }
+  }
+}

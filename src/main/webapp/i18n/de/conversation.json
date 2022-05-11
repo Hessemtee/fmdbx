@@ -1,0 +1,27 @@
+{
+  "fmdbxApp": {
+    "conversation": {
+      "home": {
+        "title": "Conversations",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Conversation erstellen",
+        "createOrEditLabel": "Conversation erstellen oder bearbeiten",
+        "notFound": "Keine Conversations gefunden"
+      },
+      "created": "Conversation erstellt mit ID {{ param }}",
+      "updated": "Conversation aktualisiert mit ID {{ param }}",
+      "deleted": "Conversation gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Conversation {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Conversation"
+      },
+      "id": "ID",
+      "objet": "Objet",
+      "message": "Message",
+      "emetteur": "Emetteur",
+      "recepteur": "Recepteur"
+    }
+  }
+}
